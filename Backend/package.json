@@ -1,4 +1,9 @@
 {
+  "scripts": {
+  "dev": "nodemon index.js",
+  "start": "node index.js",
+  "postinstall": "npx prisma generate"
+},
   "name": "silkos",
   "private": true,
   "version": "0.0.0",
