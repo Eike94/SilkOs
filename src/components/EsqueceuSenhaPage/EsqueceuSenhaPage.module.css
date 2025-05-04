@@ -28,7 +28,8 @@
     align-items: center;
     flex-direction: column;
     height: 20%;
-    width: 400px; 
+    width: 400px;
+    gap: 10px;
     border-radius: 5px;
     background-color: #272727;
 }
@@ -60,4 +61,5 @@
 
 .container button {
     width: 150px;
+    padding: 10px;
 }
