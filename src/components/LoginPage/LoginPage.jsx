@@ -12,7 +12,7 @@ export default function LoginPage() {
 
     async function getUsers() {
         try {
-            const response = await api.post(`/Users/autenticar`, {
+            const response = await api.post(`https://silkos.onrender.com/Users/autenticar`, {
                 email,
                 password,
             });
@@ -33,7 +33,7 @@ export default function LoginPage() {
 
         if (response?.status === 200) {
             console.log("Usuário autenticado!");
-            navigate("/FormularioPage");
+            navigate("https://silkos.onrender.com/FormularioPage");
         } else if (response?.status === 403) {
             setText(response.data.message);
         } else {
