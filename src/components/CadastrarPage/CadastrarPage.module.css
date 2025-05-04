@@ -1,90 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: "Inter", sans-serif;
 }
 
 .body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #1e1e1e;
-  color: #fff;
-  padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    gap: 40px;
+    background-color: #1e1e1e;
+    color: #fff;
 }
 
 .titleCadastrar p {
-  font-size: 42px;
-  font-weight: 600;
-  margin-bottom: 20px;
+    font-size: 70px;
 }
 
 .container {
-  background-color: #272727;
-  padding: 30px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50%;
+    width: 400px;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: #272727;
 }
 
 .formCadastrar {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+    width: 100%;
 }
 
 .formCadastrar input {
-  background-color: #3a3a3a;
-  border: 1px solid #555;
-  border-radius: 6px;
-  padding: 12px;
-  color: #fff;
-  font-size: 14px;
-  transition: border-color 0.3s;
+    width: 80%;
+    height: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
 }
 
-.formCadastrar input:focus {
-  border-color: #28a745;
-  outline: none;
-}
-
-.formCadastrar p {
-  color: #f44336;
-  font-size: 14px;
-  text-align: center;
-  margin: 0;
+.options {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .container button {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.container button:last-child {
-  background-color: #444;
-}
-
-.container button:hover {
-  background-color: #218838;
-}
-
-.container button:last-child:hover {
-  background-color: #555;
+    width: 150px;
 }
