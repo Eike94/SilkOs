@@ -58,7 +58,7 @@ h3 {
   margin-top: 8px;
   border-radius: 6px;
   overflow-y: auto;
-  max-height: 700px;
+  max-height: 100px;
   background-color: #1c1c1c;
   scrollbar-width: thin;
   scrollbar-color: #444 #1c1c1c;
