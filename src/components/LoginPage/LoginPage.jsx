@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // ⬅️ importar useNavigate
-import api from '../../api';
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../api"; // ✅ Corrigido
 import StyleLoginPage from "./LoginPage.module.css";
 
 export default function LoginPage() {
@@ -8,40 +8,33 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [text, setText] = useState("");
 
-    const navigate = useNavigate(); // ⬅️ inicializa o hook de navegação
+    const navigate = useNavigate();
 
     async function getUsers() {
         try {
             const response = await api.post(`/Users/autenticar`, {
-                email: email,
-                password: password,
+                email,
+                password,
             });
 
             return response;
         } catch (error) {
-            if (error.response) {
-                return error.response;
-            }
+            if (error.response) return error.response;
         }
     }
 
     async function HandleLogin() {
         setText("");
 
-        if (email === "") {
-            setText("Preencha o campo EMAIL!");
-            return;
-        } else if (password === "") {
-            setText("Preencha o campo SENHA!");
-            return;
-        }
+        if (!email) return setText("Preencha o campo EMAIL!");
+        if (!password) return setText("Preencha o campo SENHA!");
 
         const response = await getUsers();
 
-        if (response && response.status === 200) {
+        if (response?.status === 200) {
             console.log("Usuário autenticado!");
-            navigate("/FormularioPage"); // ⬅️ redireciona para FormularioPage
-        } else if (response && response.status === 403) {
+            navigate("/FormularioPage");
+        } else if (response?.status === 403) {
             setText(response.data.message);
         } else {
             setText("Erro no servidor! Por favor tente mais tarde!");
