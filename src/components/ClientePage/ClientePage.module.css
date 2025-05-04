@@ -26,15 +26,7 @@ h2 {
   gap: 16px;
 }
 
-input {
-  background-color: #444;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 12px;
-  width: 100%;
-  font-size: 14px;
-}
+
 
 .row {
   display: flex;
@@ -52,6 +44,7 @@ h3 {
 .lista {
   list-style: none;
   width: 60%;
+  display: flex;
   justify-content: start;
   flex-direction: column;
   padding: 0;
