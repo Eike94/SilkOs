@@ -26,7 +26,19 @@ h2 {
   gap: 16px;
 }
 
-
+.placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+.input {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  width: 100%;
+}
 
 .row {
   display: flex;
