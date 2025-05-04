@@ -58,7 +58,7 @@ h3 {
 .lista {
   list-style: none;
   width: 60%;
-  height: 50%;
+  height: 100%;
   display: flex;
   justify-content: start;
   flex-direction: column;
