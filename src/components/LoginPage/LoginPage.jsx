@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../../Backend/api";
+import api from "../../api";
 import StyleLoginPage from "./LoginPage.module.css";
 
 export default function LoginPage() {
@@ -12,7 +12,7 @@ export default function LoginPage() {
 
     async function getUsers() {
         try {
-            const response = await api.post(`https://silkos.onrender.com/Users/autenticar`, {
+            const response = await api.post(`/Users/autenticar`, {
                 email,
                 password,
             });
@@ -33,7 +33,7 @@ export default function LoginPage() {
 
         if (response?.status === 200) {
             console.log("Usuário autenticado!");
-            navigate("https://silkos.onrender.com/FormularioPage");
+            navigate("/FormularioPage");
         } else if (response?.status === 403) {
             setText(response.data.message);
         } else {
