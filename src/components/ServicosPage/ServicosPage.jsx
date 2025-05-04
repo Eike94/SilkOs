@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ServicosPage.module.css';
-import axios from 'axios';
+import api from '../../api';
 import Navbar from '../Navbar/Navbar';
 
 export default function ServicosPage() {
@@ -21,7 +21,7 @@ export default function ServicosPage() {
 
   const fetchServicos = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/servicos');
+      const res = await api.get('/servicos');
       setServicos(res.data);
     } catch (err) {
       console.error('Erro ao buscar serviços:', err);
@@ -29,7 +29,7 @@ export default function ServicosPage() {
   };
 
   const handleEditar = (servico) => {
-    setEditandoId(servico.id);
+    setEditandoId(servico.id || servico._id);
     setFormData({
       servico1: servico.servico1 || '',
       servico2: servico.servico2 || '',
@@ -50,17 +50,18 @@ export default function ServicosPage() {
         valor: formData.valor ? Number(formData.valor) : 0,
         data: formData.data || null
       };
-  
-      await axios.patch(`http://localhost:3000/servicos/${id}`, payload);
+
+      await api.patch(`/servicos/${id}`, payload);
       setEditandoId(null);
       fetchServicos();
     } catch (err) {
       console.error('Erro ao salvar serviço:', err);
     }
   };
+
   const handleExcluir = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/servicos/${id}`);
+      await api.delete(`/servicos/${id}`);
       fetchServicos();
     } catch (err) {
       console.error('Erro ao excluir serviço:', err);
@@ -87,7 +88,7 @@ export default function ServicosPage() {
         </thead>
         <tbody>
           {servicos.map((servico) => (
-            <React.Fragment key={servico.id}>
+            <React.Fragment key={servico.id || servico._id}>
               <tr>
                 <td>{new Date(servico.data).toLocaleDateString()}</td>
                 <td>{servico.cliente}</td>
@@ -95,10 +96,10 @@ export default function ServicosPage() {
                 <td>R${servico.valor.toFixed(2)}</td>
                 <td>
                   <button className={styles.edit} onClick={() => handleEditar(servico)}>Editar</button>
-                  <button className={styles.delete} onClick={() => handleExcluir(servico.id)}>Excluir</button>
+                  <button className={styles.delete} onClick={() => handleExcluir(servico.id || servico._id)}>Excluir</button>
                 </td>
               </tr>
-              {editandoId === servico.id && (
+              {editandoId === (servico.id || servico._id) && (
                 <tr className={styles.edicaoRow}>
                   <td colSpan={5}>
                     <div className={styles.formEdicao}>
@@ -108,7 +109,7 @@ export default function ServicosPage() {
                       <input type="number" name="quantidadePeca" value={formData.quantidadePeca} onChange={handleChange} placeholder="Qtd Peça" />
                       <input type="number" name="valor" value={formData.valor} onChange={handleChange} placeholder="Valor" />
                       <input type="date" name="data" value={formData.data} onChange={handleChange} />
-                      <button className={styles.salvar} onClick={() => handleSalvar(servico.id)}>Salvar</button>
+                      <button className={styles.salvar} onClick={() => handleSalvar(servico.id || servico._id)}>Salvar</button>
                     </div>
                   </td>
                 </tr>
@@ -119,4 +120,4 @@ export default function ServicosPage() {
       </table>
     </div>
   );
-} 
+}

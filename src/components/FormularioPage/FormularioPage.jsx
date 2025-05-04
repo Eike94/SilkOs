@@ -139,7 +139,6 @@ export default function FormularioPage() {
         onChange={(e) => setData(e.target.value)}
       />
 
-      <p><strong>Valor final estimado:</strong> R$ {calcularValorTotal().toFixed(2)}</p>
       <button onClick={handleSalvar}>Salvar</button>
     </div>
   );
