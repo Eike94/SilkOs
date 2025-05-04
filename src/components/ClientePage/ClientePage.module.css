@@ -51,6 +51,7 @@ h3 {
 
 .lista {
   list-style: none;
+  display: flex ;
   justify-content: start;
   padding: 0;
   margin-top: 8px;
