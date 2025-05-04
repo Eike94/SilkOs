@@ -76,7 +76,7 @@ export default function ClientePage() {
       <h2>Cadastro de Cliente</h2>
 
       <div className={styles.formContainer}>
-        <input type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
+        <input type="nome" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} />
         
         <div className={styles.row}>
           <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
@@ -85,12 +85,12 @@ export default function ClientePage() {
 
         <div className={styles.row}>
           <input type="endereco1" name="endereco1" placeholder="Endereço 1" value={formData.endereco1} onChange={handleChange} />
-          <input type="email" name="numero1" placeholder="Número" value={formData.numero1} onChange={handleChange} />
+          <input type="numero1" name="numero1" placeholder="Número" value={formData.numero1} onChange={handleChange} />
         </div>
 
         <div className={styles.row}>
           <input type="endereco2" name="endereco2" placeholder="Endereço 2" value={formData.endereco2} onChange={handleChange} />
-          <input type="numero"name="numero2" placeholder="Número" value={formData.numero2} onChange={handleChange} />
+          <input type="numero2"name="numero2" placeholder="Número" value={formData.numero2} onChange={handleChange} />
         </div>
       </div>
 
