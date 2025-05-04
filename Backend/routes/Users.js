@@ -46,29 +46,27 @@ routerUsersAPI.post("/cadastrar", async (req, res) => {
             await transporter.sendMail({
                 from: '"SilkOS Systems" <email>',
                 to: req.body.email,
-                subject: "Confirmação de email",
-                html: <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px;">
-                      <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                      <h2 style="color: #333;">Bem-vindo ao <span style="color: #28a745;">SilkOS</span>, ${req.body.nome}!</h2>
+                subject: "Confirmação de Email - SilkOS",
+                html: `
+                  <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px;">
+                    <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                      <h2 style="color: #333;">Olá, ${req.body.nome}!</h2>
                       <p style="font-size: 16px; color: #555;">
-                         Obrigado por se cadastrar. Para ativar sua conta e começar a usar nosso sistema, clique no botão abaixo:
-                    </p>
-             <div style="text-align: center; margin: 30px 0;">
-        <a href="https://silkos.onrender.com/Users/validarEmail?token=${tokenUser}&email=${req.body.email}"
-           style="background-color: #28a745; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold;">
-          Validar Conta
-        </a>
-      </div>
-      <p style="font-size: 14px; color: #777;">
-        Se você não se cadastrou no SilkOS, ignore este e-mail.
-      </p>
-      <hr style="margin-top: 40px;" />
-      <p style="font-size: 12px; color: #aaa;">© ${new Date().getFullYear()} SilkOS - Todos os direitos reservados.</p>
-    </div>
-  </div>
-
-,
-            });
+                        Obrigado por se registrar no <strong>SilkOS</strong>. Para ativar sua conta, clique no botão abaixo:
+                      </p>
+                      <div style="text-align: center; margin: 30px 0;">
+                        <a href="https://silkos.onrender.com/Users/validarEmail?token=${tokenUser}&email=${req.body.email}"
+                           style="background-color: #28a745; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                          Validar Conta
+                        </a>
+                      </div>
+                      <p style="font-size: 14px; color: #999;">Se você não realizou este cadastro, ignore este e-mail.</p>
+                      <hr style="margin-top: 40px;" />
+                      <p style="font-size: 12px; color: #aaa;">SilkOS - Todos os direitos reservados.</p>
+                    </div>
+                  </div>
+                `,
+              });
         }
 
         res.status(201).json({ message: "Usuário criado!", user: novoUsuario });
@@ -133,10 +131,27 @@ routerUsersAPI.post("/recuperarSenhaEmail", async (req, res) => {
         await transporter.sendMail({
             from: '"SilkOS Systems" <email>',
             to: email,
-            subject: "Recuperção de senha",
-            html: `Clique nesse link para redefinir sua senha: 
-            <a href="https://silkos.onrender.com?token=${RecToken}&email=${email}">Alterar senha</a>`,
-        });
+            subject: "Recuperação de Senha - SilkOS",
+  html: `
+    <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px;">
+      <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <h2 style="color: #333;">Recuperação de Senha</h2>
+        <p style="font-size: 16px; color: #555;">
+          Foi solicitada a recuperação de senha para sua conta. Se você fez isso, clique no botão abaixo para redefinir:
+        </p>
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="https://silkos.onrender.com/EsqueceuSenha?token=${RecToken}&email=${email}"
+             style="background-color: #007bff; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+            Redefinir Senha
+          </a>
+        </div>
+        <p style="font-size: 14px; color: #999;">Se você não solicitou isso, apenas ignore este e-mail.</p>
+        <hr style="margin-top: 40px;" />
+        <p style="font-size: 12px; color: #aaa;">SilkOS - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  `,
+});
 
         res.status(200).json({ message: "Email enviado com sucesso!" });
     } catch (e) {
