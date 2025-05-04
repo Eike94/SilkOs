@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './FormularioPage.module.css';
-import axios from 'axios';
+import api from '../../api'; // ajuste o caminho se o seu `api.js` estiver em outro lugar
 import Navbar from '../Navbar/Navbar';
 
 const servico1Options = ['Vetor Simples', 'Vetor Mediano', 'Vetor Complexo', 'Layout'];
@@ -19,7 +19,7 @@ export default function FormularioPage() {
   useEffect(() => {
     async function fetchClientes() {
       try {
-        const res = await axios.get('http://localhost:3000/clientes');
+        const res = await api.get('/clientes');
         setClientes(res.data);
       } catch (err) {
         console.error('Erro ao buscar clientes:', err);
@@ -32,7 +32,7 @@ export default function FormularioPage() {
   useEffect(() => {
     async function fetchValores() {
       try {
-        const res = await axios.get('http://localhost:3000/servicos/valores');
+        const res = await api.get('/servicos/valores');
         setValoresConfig(res.data || {});
       } catch (err) {
         console.error('Erro ao buscar valores:', err);
@@ -58,7 +58,6 @@ export default function FormularioPage() {
     const valorServico1 = getValorServico(servico1);
     const valorServico2 = getValorServico(servico2);
     const valorSilk = (valoresConfig.valorCor || 0) * quantidadeCor * quantidadePeca;
-
     return valorServico1 + valorServico2 + valorSilk;
   };
 
@@ -66,7 +65,7 @@ export default function FormularioPage() {
     const valor = calcularValorTotal();
 
     try {
-      const response = await axios.post('http://localhost:3000/servicos', {
+      const response = await api.post('/servicos', {
         cliente,
         servico1,
         servico2,
@@ -87,15 +86,12 @@ export default function FormularioPage() {
   return (
     <div className={styles.container}>
       <Navbar />
-
       <h2>SilkOS - Formulário</h2>
 
       <select value={cliente} onChange={(e) => setCliente(e.target.value)}>
         <option value="">Selecionar Cliente</option>
         {clientes.map((c) => (
-          <option key={c.id || c._id} value={c.nome}>
-            {c.nome}
-          </option>
+          <option key={c.id || c._id} value={c.nome}>{c.nome}</option>
         ))}
       </select>
 
@@ -143,8 +139,7 @@ export default function FormularioPage() {
         onChange={(e) => setData(e.target.value)}
       />
 
-      
-
+      <p><strong>Valor final estimado:</strong> R$ {calcularValorTotal().toFixed(2)}</p>
       <button onClick={handleSalvar}>Salvar</button>
     </div>
   );
