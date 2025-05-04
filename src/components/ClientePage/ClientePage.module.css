@@ -32,14 +32,16 @@ input {
   border: none;
   border-radius: 5px;
   padding: 12px;
-  width: 100%;
   font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .row {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 h3 {
@@ -59,6 +61,8 @@ h3 {
   background-color: #1c1c1c;
   scrollbar-width: thin;
   scrollbar-color: #444 #1c1c1c;
+  width: 100%; /* 👈 para igualar à formContainer */
+  box-sizing: border-box;
 }
 
 .lista::-webkit-scrollbar {
