@@ -1,7 +1,7 @@
 // src/components/EditarValoresPage/EditarValoresPage.jsx
 import React, { useState, useEffect } from 'react';
 import styles from './EditarValoresPage.module.css';
-import axios from 'axios';
+import api from '../../api'; // ✅ uso do arquivo central de API
 import Navbar from '../Navbar/Navbar';
 
 export default function EditarValoresPage() {
@@ -14,11 +14,10 @@ export default function EditarValoresPage() {
     valorCor: 7
   });
 
-  // Carrega os valores salvos do backend ao abrir a tela
   useEffect(() => {
     async function carregarValores() {
       try {
-        const response = await axios.get('http://localhost:3000/servicos/valores');
+        const response = await api.get('/servicos/valores');
         if (response.data) {
           setValores(response.data);
         }
@@ -39,7 +38,7 @@ export default function EditarValoresPage() {
 
   const handleSalvar = async () => {
     try {
-      await axios.post('http://localhost:3000/servicos/valores', valores);
+      await api.post('/servicos/valores', valores);
       alert('Valores salvos com sucesso!');
     } catch (err) {
       console.error('Erro ao salvar valores:', err);
@@ -67,9 +66,10 @@ export default function EditarValoresPage() {
         <label>Separação de Cor</label>
         <input type="number" name="separacaoCor" value={valores.separacaoCor} onChange={handleChange} />
 
-        <label>Valor da quantidade de Cor</label>
+        <label>Valor por Cor</label>
         <input type="number" name="valorCor" value={valores.valorCor} onChange={handleChange} />
       </div>
+
       <button className={styles.button} onClick={handleSalvar}>Salvar</button>
     </div>
   );
