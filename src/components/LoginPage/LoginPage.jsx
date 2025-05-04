@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../../api"
+import api from "../../api"
 import StyleLoginPage from "./LoginPage.module.css";
 
 export default function LoginPage() {

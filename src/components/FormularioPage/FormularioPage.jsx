@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './FormularioPage.module.css';
-import api from '../../../api'; // ajuste o caminho se o seu `api.js` estiver em outro lugar
+import api from '../../api'; // ajuste o caminho se o seu `api.js` estiver em outro lugar
 import Navbar from '../Navbar/Navbar';
 
 const servico1Options = ['Vetor Simples', 'Vetor Mediano', 'Vetor Complexo', 'Layout'];
