@@ -43,6 +43,7 @@ export default function EsqueceuSenhaPage() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <button onClick={() => SendRecPassword()}>Enviar</button>
+                    {text}
                     <button
                         onClick={() => {
                             navigate("/Login");
