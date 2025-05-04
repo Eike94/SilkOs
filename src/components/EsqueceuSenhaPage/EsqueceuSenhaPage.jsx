@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../../Backend/api";
+import api from "../../api";
 import StyleEsqueceuSenhaPage from "./EsqueceuSenhaPage.module.css";
 
 export default function EsqueceuSenhaPage() {

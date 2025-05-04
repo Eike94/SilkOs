@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../../Backend/api";
+import api from "../../api";
 import StyleCadastrarPage from "./CadastrarPage.module.css";
 
 export default function CadastrarPage() {

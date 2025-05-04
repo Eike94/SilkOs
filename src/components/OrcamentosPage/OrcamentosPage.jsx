@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import styles from './OrcamentosPage.module.css';
-import axios from 'axios';
+import api from '../../api'; // ✅ usando API centralizada
 import Navbar from '../Navbar/Navbar';
 
 export default function OrcamentosPage() {
@@ -10,7 +10,7 @@ export default function OrcamentosPage() {
 
   const carregarOrcamentos = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/servicos');
+      const res = await api.get('/servicos');
       setOrcamentos(res.data);
     } catch (err) {
       console.error('Erro ao buscar orçamentos:', err);
@@ -45,7 +45,7 @@ export default function OrcamentosPage() {
       theme: 'striped',
       styles: { halign: 'center' },
       headStyles: { fillColor: [41, 41, 41] },
-      alternateRowStyles: { fillColor: [240, 240, 240] }
+      alternateRowStyles: { fillColor: [245, 245, 245] }
     });
 
     const finalY = doc.lastAutoTable.finalY + 10;
@@ -60,7 +60,7 @@ export default function OrcamentosPage() {
     if (!confirmar) return;
 
     try {
-      await axios.delete(`http://localhost:3000/servicos/${id}`);
+      await api.delete(`/servicos/${id}`);
       await carregarOrcamentos();
     } catch (err) {
       console.error('Erro ao excluir orçamento:', err);

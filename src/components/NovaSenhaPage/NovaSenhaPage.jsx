@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import api from "../../../Backend/api";
+import api from "../../api";
 import StyleNovaSenhaPage from "./NovaSenhaPage.module.css";
 
 export default function NovaSenhaPage() {
