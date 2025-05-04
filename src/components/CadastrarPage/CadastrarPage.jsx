@@ -96,7 +96,7 @@ export default function CadastrarPage() {
                 <div className={StyleCadastrarPage.container}>
                     <div className={StyleCadastrarPage.formCadastrar}>
                         <input
-                            type="text"
+                            type="nome"
                             placeholder="Nome"
                             value={state.value}
                             onChange={(e) => HandleChangeState("nome", e.target.value)}
