@@ -13,16 +13,22 @@ routerServicos.post("/", async (req, res) => {
     servico2,
     quantidadeCor,
     quantidadePeca,
-    data
+    data,
+    valor // <- pega o valor diretamente do body
   } = req.body;
 
-  if (!cliente || !servico1 || !quantidadeCor || !quantidadePeca || !data) {
+  if (
+    !cliente ||
+    !servico1 ||
+    quantidadeCor == null ||
+    quantidadePeca == null ||
+    !data ||
+    valor == null // <- garante que valor foi enviado
+  ) {
     return res.status(400).json({ error: "Campos obrigatórios estão faltando" });
   }
 
   try {
-    const valor = quantidadeCor * 2 * quantidadePeca;
-
     const novoServico = await prisma.servico.create({
       data: {
         cliente,
@@ -30,7 +36,7 @@ routerServicos.post("/", async (req, res) => {
         servico2: servico2 || null,
         quantidadeCor,
         quantidadePeca,
-        valor,
+        valor, // <- usa valor enviado
         data: new Date(data)
       }
     });
@@ -41,6 +47,7 @@ routerServicos.post("/", async (req, res) => {
     res.status(500).json({ error: "Erro ao criar o serviço" });
   }
 });
+
 
 // Salvar ou atualizar valores configurados da tela EditarValoresPage
 routerServicos.post("/valores", async (req, res) => {
